@@ -1,11 +1,17 @@
 import './App.css';
+import Message from './Message.js';
+
+const msgProps = {
+  sender: 'Azamat Khemraev',
+  msg: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, explicabo.',
+}
+
 
 function App(props) {
   return (
     <div className = 'App'>
       <header className = 'App-header'>
-        My First React App
-        <h3>Hello world! My name is {props.name}</h3>
+        <Message msg = {msgProps.msg} sender = {msgProps.sender}/>
       </header>
     </div>
   )
