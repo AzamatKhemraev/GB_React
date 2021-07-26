@@ -1,6 +1,6 @@
-import './App.css';
+import '../App.css';
 
-function Message(props) {
+export default function Message(props) {
   return (
     <div className='Message'>
       <div className='Message-box send'>
@@ -13,4 +13,4 @@ function Message(props) {
   )
 }
 
-export default Message;
+// export default Message;
