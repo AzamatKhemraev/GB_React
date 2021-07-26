@@ -9,9 +9,9 @@ const msgProps = {
 
 function App(props) {
   return (
-    <div className = 'App'>
-      <header className = 'App-header'>
-        <Message msg = {msgProps.msg} sender = {msgProps.sender}/>
+    <div className='App'>
+      <header className='App-header'>
+        <Message msg={msgProps.msg} sender={msgProps.sender}/>
       </header>
     </div>
   )
