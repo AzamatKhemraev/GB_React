@@ -46,7 +46,9 @@
 .Message-box {
   background-color: rgb(11, 167, 133);
   /* border: 2px solid rgb(11, 167, 133); */
-  border-radius: 30px;
+  border-radius: 25px;
+  min-width: 46px;
+  min-height: 80px;
   max-width: 350px;
   position: relative;
 }
@@ -55,7 +57,7 @@
   position: absolute;
   content: '';
   height: 25px;
-  top: 111px;
+  top: 68%;
   right: -8px;
   width: 20px;
   background-color:  rgb(11, 167, 133);
@@ -66,7 +68,7 @@
   position: absolute;
   content: '';
   height: 25px;
-  top: 111px;
+  top: 68%;
   right: -26px;
   width: 26px;
   background-color:  #282c34;
@@ -93,4 +95,18 @@
 .send {
 	/* background:  rgba(11, 167, 133, 0.781); */
 	align-self: flex-end;
+}
+
+.messages-field {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.messages-field .Message {
+  align-self: flex-end;
+}
+
+.messages-send-form {
+  margin-top: 50px;
 }
