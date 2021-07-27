@@ -1,3 +1,7 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -19,9 +23,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-header form {
+  display: flex;
+  gap: 30px;
 }
 
 .App-link {
@@ -35,4 +44,107 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Message {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  gap: 27px;
+}
+
+.Message-box {
+  background-color: rgb(11, 167, 133);
+  /* border: 2px solid rgb(11, 167, 133); */
+  border-radius: 25px;
+  min-width: 46px;
+  min-height: 80px;
+  max-width: 350px;
+  position: relative;
+}
+
+.Message-box::before {
+  position: absolute;
+  content: "";
+  height: 25px;
+  top: 68%;
+  right: -8px;
+  width: 20px;
+  background-color: rgb(11, 167, 133);
+  border-bottom-left-radius: 16px 14px;
+}
+
+.Message-box::after {
+  position: absolute;
+  content: "";
+  height: 25px;
+  top: 68%;
+  right: -26px;
+  width: 26px;
+  background-color: #282c34;
+  border-bottom-left-radius: 10px;
+}
+
+.Message-text {
+  font-weight: 100;
+  font-size: 25px;
+  text-align: right;
+  color: #000;
+  padding: 0 17px;
+}
+
+.Message-sender h2 {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  font-style: italic;
+  font-weight: 100;
+  font-size: 25px;
+  top: 70%;
+  width: 350px;
+  text-align: left;
+}
+
+.send {
+  align-self: flex-end;
+}
+
+.messages-send-form {
+  margin-bottom: 15px;
+}
+
+.messages-field {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.messages-field .Message {
+  align-self: flex-end;
+}
+
+.messages-send-form {
+  margin-top: 50px;
+}
+
+.message-input {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-size: 25px;
+  padding-left: 10px;
+  background-color: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid rgb(11, 167, 133);
+  border-left: 0;
+  outline: none;
+  color: #fff;
+}
+
+.message-send {
+  background: none;
+  border: 0;
+  font-size: 30px;
+  color: rgb(11, 167, 133);
+  cursor: pointer;
 }
