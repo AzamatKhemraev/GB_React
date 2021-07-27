@@ -25,8 +25,11 @@ const Form = ({ onSendMessage }) => {
           className="message-input"
           value={message}
           onChange={handleChange}
+          type="text"
         />
-        <button className="message-send">Send</button>
+        <button className="message-send">
+          <i className="far fa-paper-plane"></i>
+        </button>
       </form>
     </div>
   );

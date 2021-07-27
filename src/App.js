@@ -1,11 +1,15 @@
 import "./App.css";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import MessageField from "./MessagesField/MessagesField.js";
 import Form from "./Form/Form.js";
 
 function App() {
   const [messages, setMessages] = useState([
-    { text: "test text", author: "Azamat Khemraev", id: Date.now() },
+    {
+      author: "Azamat Khemraev",
+      text: "test text",
+      id: Date.now(),
+    },
   ]);
 
   const handleSendMessage = useCallback(
@@ -14,6 +18,23 @@ function App() {
     },
     [messages]
   );
+
+  useEffect(() => {
+    if (!messages.length || messages[messages.length - 1].author === "Bot") {
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      const newMessage = {
+        author: "Bot",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, ipsum?",
+        id: Date.now(),
+      };
+      setMessages([...messages, newMessage]);
+    }, 1000);
+
+    return () => clearInterval(timeout);
+  }, [messages]);
 
   return (
     <div className="App">
