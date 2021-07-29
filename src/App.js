@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useCallback, useEffect, useState } from "react";
 import MessageField from "./MessagesField/MessagesField.js";
 import Form from "./Form/Form.js";
+import Chats from "./Chats/Chats.js";
 
 function App() {
   const [messages, setMessages] = useState([
@@ -41,6 +42,7 @@ function App() {
       <header className="App-header">
         <MessageField messages={messages} />
         <Form onSendMessage={handleSendMessage} />
+        <Chats />
       </header>
     </div>
   );

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import TextField from "@material-ui/core/TextField";
 
 const Form = ({ onSendMessage }) => {
   const [message, setMessage] = useState("");
@@ -18,14 +19,21 @@ const Form = ({ onSendMessage }) => {
     setMessage("");
   };
 
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [message]);
+
   return (
     <div className="messages-send-form">
       <form onSubmit={handleSubmit}>
-        <input
-          className="message-input"
+        <TextField
+          id="standard-basic"
           value={message}
           onChange={handleChange}
           type="text"
+          inputRef={inputRef}
         />
         <button className="message-send">
           <i className="far fa-paper-plane"></i>

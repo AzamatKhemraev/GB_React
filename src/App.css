@@ -148,3 +148,11 @@ body {
   color: rgb(11, 167, 133);
   cursor: pointer;
 }
+
+.MuiInputBase-input {
+  color: white !important;
+}
+
+.MuiInput-underline::after {
+  border-bottom: 2px solid rgb(11, 167, 133) !important;
+}
