@@ -14,7 +14,7 @@ const Form = ({ onSendMessage }) => {
     onSendMessage({
       author: "Azamat Khemraev",
       text: message,
-      id: Date.now(),
+      messId: Date.now(),
     });
     setMessage("");
   };
@@ -23,7 +23,7 @@ const Form = ({ onSendMessage }) => {
 
   useEffect(() => {
     inputRef.current?.focus();
-  }, [message]);
+  }, [message, onSendMessage]);
 
   return (
     <div className="messages-send-form">
