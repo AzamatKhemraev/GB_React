@@ -1,10 +1,11 @@
 import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import Message from "../Message/Message.js";
+import { selectProfileName } from "../Store/Profile/selectors.js";
 
 export default function MessagesField(props) {
   const messages = props.messages;
-  const profileName = useSelector((state) => state.profile.name);
+  const profileName = useSelector(selectProfileName);
 
   const renderMessage = useCallback(
     (mess, i) => {

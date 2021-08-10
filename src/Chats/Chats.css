@@ -2,3 +2,16 @@
   text-decoration: none;
   color: #000;
 }
+
+.add-chat {
+  display: block;
+  padding: 0 10px;
+}
+
+.add-chat .MuiInputBase-input {
+  color: #000 !important;
+}
+
+.add-chat .MuiInput-underline::after {
+  border-bottom: 2px solid rgb(41, 41, 41) !important;
+}

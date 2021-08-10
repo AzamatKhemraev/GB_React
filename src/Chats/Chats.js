@@ -1,10 +1,14 @@
 import "./Chats.css";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
+import { TextField } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { addChat, removeChat } from "../Store/Chatslist/actions";
+import { selectChatsKeys } from "../Store/Chatslist/selectors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,9 +17,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Chats(props) {
-  const chats = Object.values(props.chats);
+export default function Chats() {
+  const chats = useSelector(selectChatsKeys);
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const [value, setValue] = useState("");
+
+  const handleChange = useCallback((e) => {
+    setValue(e.target.value);
+  }, []);
+
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (!value) {
+        return;
+      }
+      dispatch(addChat(value));
+      setValue("");
+    },
+    [dispatch, value]
+  );
+
+  const handleRemoveChat = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(removeChat(e.target.parentNode.id));
+    },
+    [dispatch]
+  );
 
   return (
     <div
@@ -29,6 +61,15 @@ export default function Chats(props) {
         color: "black",
       }}
     >
+      <form className="add-chat" onSubmit={handleSubmit}>
+        <TextField
+          id="standard-basic"
+          onChange={handleChange}
+          type="text"
+          placeholder="chat name"
+          value={value}
+        />
+      </form>
       <List component="nav" aria-label="main mailbox folders">
         {chats.map((chat) => {
           return (
@@ -39,13 +80,20 @@ export default function Chats(props) {
             >
               <ListItem button>
                 <ListItemText primary={chat[0].chatName} />
-                <span
-                  style={{
-                    fontSize: "10px",
-                  }}
-                >
-                  id:{chat[0].chatId}
-                </span>
+                <form onSubmit={handleRemoveChat}>
+                  <button
+                    onClick={handleRemoveChat}
+                    id={chat[0].chatId}
+                    style={{
+                      border: "none",
+                      backgroundColor: "transparent",
+                      fontSize: "20px",
+                      zIndex: 999,
+                    }}
+                  >
+                    <i className="far fa-trash-alt"></i>
+                  </button>
+                </form>
               </ListItem>
             </Link>
           );

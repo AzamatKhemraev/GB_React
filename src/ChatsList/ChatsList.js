@@ -5,11 +5,12 @@ import Form from "../Form/Form.js";
 import Chats from "../Chats/Chats.js";
 import { useDispatch, useSelector } from "react-redux";
 import addMessage from "../Store/Chatslist/actions";
+import { selectChats } from "../Store/Chatslist/selectors";
 
 export default function ChatsList({ match }) {
   const { chatId } = match.params;
 
-  const chats = useSelector((state) => state.chats);
+  const chats = useSelector(selectChats);
   const dispatch = useDispatch();
 
   const handleSendMessage = useCallback(
@@ -50,6 +51,7 @@ export default function ChatsList({ match }) {
           <Form onSendMessage={handleSendMessage} />
         </>
       )}
+
       <Chats chats={chats} />
     </div>
   );
