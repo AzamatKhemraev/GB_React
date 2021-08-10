@@ -1,18 +1,18 @@
-import { toggleShowName } from "./actions";
+import { PROFILE_CHANGE_NAME } from "./actions";
 
-const TOGGLE_SHOW_NAME = toggleShowName.type;
+// const TOGGLE_SHOW_NAME = toggleShowName.type;
 
 const initialState = {
   showName: false,
-  name: "Azamat Khemraev",
+  name: "No name",
 };
 
 const profileReducer = (state = initialState, action) => {
-  switch (toggleShowName.type) {
-    case TOGGLE_SHOW_NAME:
+  switch (action.type) {
+    case PROFILE_CHANGE_NAME:
       return {
         ...state,
-        showName: !state.showName,
+        name: action.payload,
       };
     default:
       return state;

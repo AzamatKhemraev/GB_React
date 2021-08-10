@@ -1,28 +1,35 @@
-import { useCallback } from "react";
-// import { store } from "../Store/Store";
-import { toggleShowName } from "../Store/Profile/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useCallback, useState } from "react";
+import { changeName } from "../Store/Profile/actions";
+import { useDispatch } from "react-redux";
 
-export default function Profile({ match }) {
-  const { showName, name } = useSelector((state) => state);
+export default function Profile() {
+  const [value, setValue] = useState("");
   const dispatch = useDispatch();
-  const setShowName = useCallback(() => {
-    dispatch(toggleShowName);
-  }, [dispatch]);
+
+  const handleChange = useCallback((e) => {
+    const value = e.target.value;
+    setValue(value);
+  }, []);
+
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (!value) {
+        return;
+      }
+      dispatch(changeName(value));
+      setValue("");
+    },
+    [dispatch, value]
+  );
 
   return (
     <div>
       <h1>Profile</h1>
-      <label>
-        <input
-          type="checkbox"
-          checked={showName}
-          value={showName}
-          onChange={setShowName}
-        />
-        <span>Show name</span>
-      </label>
-      {showName && <h2>{name}</h2>}
+      <form onSubmit={handleSubmit}>
+        <span>Ente your name</span>
+        <input value={value} onChange={handleChange} />
+      </form>
     </div>
   );
 }

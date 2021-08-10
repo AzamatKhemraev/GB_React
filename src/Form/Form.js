@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import TextField from "@material-ui/core/TextField";
+import { useSelector } from "react-redux";
 
 const Form = ({ onSendMessage }) => {
   const [message, setMessage] = useState("");
+  const name = useSelector((sate) => sate.profile.name);
 
   const handleChange = (e) => {
     setMessage(e.target.value);
@@ -12,7 +14,7 @@ const Form = ({ onSendMessage }) => {
     e.preventDefault();
 
     onSendMessage({
-      author: "Azamat Khemraev",
+      author: name,
       text: message,
       messId: Date.now(),
     });

@@ -1,52 +1,22 @@
 import "../App.css";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import MessageField from "../MessagesField/MessagesField.js";
 import Form from "../Form/Form.js";
 import Chats from "../Chats/Chats.js";
-
-const initialChats = {
-  Chat123: [
-    {
-      author: "Azamat Khemraev",
-      text: "this is chat#1",
-      chatId: "Chat123",
-      chatName: "Chat #1",
-      messId: Date.now(),
-    },
-  ],
-  Chat657: [
-    {
-      author: "Azamat Khemraev",
-      text: "this is chat#2",
-      chatId: "Chat657",
-      chatName: "Chat #2",
-      messId: Date.now(),
-    },
-  ],
-  Chat345: [
-    {
-      author: "Azamat Khemraev",
-      text: "this is chat#3",
-      chatId: "Chat345",
-      chatName: "Chat #3",
-      messId: Date.now(),
-    },
-  ],
-};
+import { useDispatch, useSelector } from "react-redux";
+import addMessage from "../Store/Chatslist/actions";
 
 export default function ChatsList({ match }) {
   const { chatId } = match.params;
 
-  const [chats, setChats] = useState(initialChats);
+  const chats = useSelector((state) => state.chats);
+  const dispatch = useDispatch();
 
   const handleSendMessage = useCallback(
     (newMessage) => {
-      setChats({
-        ...chats,
-        [chatId]: [...chats[chatId], newMessage],
-      });
+      dispatch(addMessage(chatId, newMessage));
     },
-    [chats, chatId]
+    [dispatch, chatId]
   );
 
   useEffect(() => {
@@ -66,14 +36,11 @@ export default function ChatsList({ match }) {
         chatName: "Chat #3",
         messId: Date.now(),
       };
-      setChats({
-        ...chats,
-        [chatId]: [...chats[chatId], newMessage],
-      });
+      dispatch(addMessage(chatId, newMessage));
     }, 1000);
 
     return () => clearInterval(timeout);
-  }, [chats[chatId]]);
+  }, [dispatch, chats, chatId]);
 
   return (
     <div className="chats-list">
