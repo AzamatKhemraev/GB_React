@@ -27,8 +27,9 @@ function createChat(state, action) {
 }
 
 function removeChat(state, chatId) {
-  delete state[chatId];
-  return state;
+  const newState = { ...state };
+  delete newState[chatId];
+  return newState;
 }
 
 const chatsReducer = (state = initialChats, action) => {

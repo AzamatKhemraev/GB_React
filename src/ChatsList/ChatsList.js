@@ -1,10 +1,10 @@
 import "../App.css";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import MessageField from "../MessagesField/MessagesField.js";
 import Form from "../Form/Form.js";
 import Chats from "../Chats/Chats.js";
 import { useDispatch, useSelector } from "react-redux";
-import addMessage from "../Store/Chatslist/actions";
+import { addMessageWithReply } from "../Store/Chatslist/actions";
 import { selectChats } from "../Store/Chatslist/selectors";
 
 export default function ChatsList({ match }) {
@@ -15,33 +15,10 @@ export default function ChatsList({ match }) {
 
   const handleSendMessage = useCallback(
     (newMessage) => {
-      dispatch(addMessage(chatId, newMessage));
+      dispatch(addMessageWithReply(chatId, newMessage));
     },
     [dispatch, chatId]
   );
-
-  useEffect(() => {
-    if (
-      !chats[chatId] ||
-      !chats[chatId].length ||
-      chats[chatId][chats[chatId].length - 1].author === "Bot"
-    ) {
-      return;
-    }
-
-    const timeout = setTimeout(() => {
-      const newMessage = {
-        author: "Bot",
-        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, ipsum?",
-        chatId: "Chat345",
-        chatName: "Chat #3",
-        messId: Date.now(),
-      };
-      dispatch(addMessage(chatId, newMessage));
-    }, 1000);
-
-    return () => clearInterval(timeout);
-  }, [dispatch, chats, chatId]);
 
   return (
     <div className="chats-list">

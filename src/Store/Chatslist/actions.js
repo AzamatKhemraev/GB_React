@@ -10,6 +10,27 @@ export default function addMessage(chatId, message) {
   };
 }
 
+let timeout;
+export const addMessageWithReply = (chatId, message) => (dispatch) => {
+  dispatch(addMessage(chatId, message));
+
+  if (timeout) {
+    clearTimeout(timeout);
+  }
+
+  timeout = setTimeout(() => {
+    dispatch(
+      addMessage(chatId, {
+        author: "Bot",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, ipsum?",
+        chatId: "Chat345",
+        chatName: "Chat #3",
+        messId: Date.now(),
+      })
+    );
+  }, 1000);
+};
+
 export function addChat(payload) {
   return {
     type: CHATS_ADD_CHAT,
