@@ -23,7 +23,7 @@ export const addMessageWithReply = (chatId, message) => (dispatch) => {
       addMessage(chatId, {
         author: "Bot",
         text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, ipsum?",
-        chatId: "Chat345",
+        chatId: chatId,
         chatName: "Chat #3",
         messId: Date.now(),
       })

@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import ChatsList from "../ChatsList/ChatsList";
+import SW from "../SW/SW";
 import HomePage from "../HomePage/HomePage";
 import Page404 from "../Page404/Page404";
 import Profile from "../Profile/Profile";
@@ -24,6 +25,9 @@ export default function Routes(props) {
               <li>
                 <Link to="/Chats">Chats</Link>
               </li>
+              <li>
+                <Link to="/SW">Star wars</Link>
+              </li>
             </ul>
           </nav>
           <Switch>
@@ -37,6 +41,9 @@ export default function Routes(props) {
               path="/Chats/:chatId?"
               render={(data) => <ChatsList match={data.match} />}
             ></Route>
+            <Route path="/SW">
+              <SW />
+            </Route>
             <Route path="*">
               <Page404 />
             </Route>

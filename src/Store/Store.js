@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
 import chatsReducer from "./Chatslist/reducer";
+import swapiReducer from "./SW/reducer";
 import profileReducer from "./Profile/reducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -15,6 +16,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   chats: chatsReducer,
   profile: profileReducer,
+  swapi: swapiReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
