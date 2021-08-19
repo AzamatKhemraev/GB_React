@@ -1,14 +1,15 @@
-import './App.css';
+import "./App.css";
+import React from "react";
+import Routes from "./Routes/Routes";
 
-function App(props) {
+function App() {
   return (
-    <div className = 'App'>
-      <header className = 'App-header'>
-        My First React App
-        <h3>Hello world! My name is {props.name}</h3>
-      </header>
+    <div className="App">
+      <div className="App-header">
+        <Routes />
+      </div>
     </div>
-  )
+  );
 }
 
 export default App;
